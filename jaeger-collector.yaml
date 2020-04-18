@@ -1,0 +1,12 @@
+---
+admin-http-port: 14269
+
+collector:
+  grpc-port: 14250
+  http-port: 14268
+  num-workers: 50
+  port: 14267
+
+log-level: "info"
+metrics-backend: "prometheus"
+metrics-http-route: "/metrics"

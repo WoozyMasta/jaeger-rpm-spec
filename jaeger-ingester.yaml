@@ -1,0 +1,6 @@
+---
+admin-http-port: 14270
+
+log-level: "info"
+metrics-backend: "prometheus"
+metrics-http-route: "/metrics"

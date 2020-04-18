@@ -1,0 +1,21 @@
+[Unit]
+Description=Jaeger collector receives traces from Jaeger agents and runs them through a processing pipeline.
+Documentation=https://www.jaegertracing.io/docs/1.17/
+Wants=network-online.target
+After=network-online.target
+AssertFileIsExecutable=/usr/local/bin/jaeger
+
+[Service]
+EnvironmentFile=-/etc/jaeger/jaeger.env
+WorkingDirectory=/var/lib/jaeger
+User=jaeger
+Group=jaeger
+StandardOutput=syslog
+SyslogIdentifier=jaeger-collector
+ExecStart=/usr/local/bin/jaeger-collector --config-file=/etc/jaeger/jaeger-collector.yaml
+Restart=on-abort
+LimitNOFILE=65536
+
+
+[Install]
+WantedBy=multi-user.target

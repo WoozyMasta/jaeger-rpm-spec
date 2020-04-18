@@ -1,0 +1,25 @@
+---
+admin-http-port: 14271
+
+reporter:
+  type: "grpc"
+  grpc:
+    host-port: "localhost:14267"
+
+http-server:
+  host-port: ":5778"
+
+processor:
+  jaeger-binary: 
+    server-host-port: ":6832"
+    workers: 10
+  jaeger-compact:
+    server-host-port: ":6831" 
+    workers: 10
+  zipkin-compact:
+    server-host-port: ":5775"
+    workers: 10
+
+log-level: "info"
+metrics-backend: "prometheus"
+metrics-http-route: "/metrics"

@@ -1,0 +1,10 @@
+---
+admin-http-port: 16687
+
+query:
+  base-path: "/"
+  port: 16686
+
+log-level: "info"
+metrics-backend: "prometheus"
+metrics-http-route: "/metrics"

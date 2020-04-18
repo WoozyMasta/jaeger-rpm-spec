@@ -1,0 +1,21 @@
+[Unit]
+Description=Jaeger: open source, end-to-end distributed tracing. All in one package.
+Documentation=https://www.jaegertracing.io/docs/1.17/
+Wants=network-online.target
+After=network-online.target
+AssertFileIsExecutable=/usr/local/bin/jaeger
+
+[Service]
+EnvironmentFile=-/etc/jaeger/jaeger.env
+WorkingDirectory=/var/lib/jaeger
+User=jaeger
+Group=jaeger
+StandardOutput=syslog
+SyslogIdentifier=jaeger
+ExecStart=/usr/local/bin/jaeger --config-file=/etc/jaeger/jaeger.yaml
+Restart=on-abort
+LimitNOFILE=65536
+
+
+[Install]
+WantedBy=multi-user.target

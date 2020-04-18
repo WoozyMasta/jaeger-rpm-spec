@@ -1,0 +1,21 @@
+[Unit]
+Description=Jaeger ingester consumes spans from a particular Kafka topic and writes them to a configured storage.
+Documentation=https://www.jaegertracing.io/docs/1.17/
+Wants=network-online.target
+After=network-online.target
+AssertFileIsExecutable=/usr/local/bin/jaeger
+
+[Service]
+EnvironmentFile=-/etc/jaeger/jaeger.env
+WorkingDirectory=/var/lib/jaeger
+User=jaeger
+Group=jaeger
+StandardOutput=syslog
+SyslogIdentifier=jaeger-ingester
+ExecStart=/usr/local/bin/jaeger-ingester --config-file=/etc/jaeger/jaeger-ingester.yaml
+Restart=on-abort
+LimitNOFILE=65536
+
+
+[Install]
+WantedBy=multi-user.target
