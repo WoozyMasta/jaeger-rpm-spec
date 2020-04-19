@@ -1,7 +1,4 @@
 %define debug_package %{nil}
-
-%define _summary Jaeger: open source, end-to-end distributed tracing.
-%define _description Monitor and troubleshoot transactions in complex distributed systems.
 # Packages
 %define _agent agent
 %define _collector collector
@@ -11,7 +8,7 @@
 Name:          jaeger
 Version:       1.17.1
 Release:       1%{?dist}
-Summary:       %{_summary} All in one package.
+Summary:       Jaeger all in one package.
 License:       Apache License 2.0
 
 Source0:       https://github.com/jaegertracing/%{name}/releases/download/v%{version}/%{name}-%{version}-linux-amd64.tar.gz
@@ -34,49 +31,40 @@ Requires(post):    systemd
 Requires(preun):   systemd
 Requires(postun):  systemd
 
-Provides:      %{name}-all-in-one
-
 %prep
 %setup -q -n %{name}-%{version}-linux-amd64
 
 %package %{_agent}
-Summary: %{_summary}. Jaeger tracing %{_agent}.
+Summary: Jaeger tracing %{_agent}.
 Conflicts: %{name},%{name}-all-in-one
 
 %package %{_collector}
-Summary: %{_summary} Jaeger tracing %{_collector}.
+Summary: Jaeger tracing %{_collector}.
 Conflicts: %{name},%{name}-all-in-one
 
 %package %{_ingester}
-Summary: %{_summary} Jaeger tracing %{_ingester}.
+Summary: Jaeger tracing %{_ingester}.
 Conflicts: %{name},%{name}-all-in-one
 
 %package %{_query}
-Summary: %{_summary} Jaeger tracing %{_query}.
+Summary: Jaeger tracing %{_query}.
 Conflicts: %{name},%{name}-all-in-one
 
 %description
-{%summary}
-{%_description}
+Jaeger: open source, end-to-end distributed tracing.
+Jaeger all-in-one distribution with agent, collector and query.
+Monitor and troubleshoot transactions in complex distributed systems.
 
 %description %{_agent}
-{%summary}
-{%_description}
 Jaeger agent is a daemon program that runs on every host and receives tracing data submitted by Jaeger client libraries.
 
 %description %{_collector}
-{%summary}
-{%_description}
 Jaeger collector receives traces from Jaeger agents and runs them through a processing pipeline.
 
 %description %{_ingester}
-{%summary}
-{%_description}
 Jaeger ingester consumes spans from a particular Kafka topic and writes them to a configured storage.
 
 %description %{_query}
-{%summary}
-{%_description}
 Jaeger query service provides a Web UI and an API for accessing trace data.
 
 %build
@@ -204,5 +192,5 @@ getent group %{name} >/dev/null && groupdel %{name}
 %config(noreplace) %attr(640, root, %{name}) %{_sysconfdir}/%{name}/%{name}.env
 
 %changelog
-* Sun Apr 19 2020 Woozy Masta Levchenko <kagbe.leviy@gmail.com> - 1.17.1
+* Sun Apr 19 2020 Maxim Levchenko <kagbe.leviy@gmail.com> - 1.17.1
 - Create spec

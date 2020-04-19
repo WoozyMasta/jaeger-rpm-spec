@@ -3,7 +3,7 @@ Description=Jaeger ingester consumes spans from a particular Kafka topic and wri
 Documentation=https://www.jaegertracing.io/docs/1.17/
 Wants=network-online.target
 After=network-online.target
-AssertFileIsExecutable=/usr/local/bin/jaeger
+AssertFileIsExecutable=/usr/bin/jaeger
 
 [Service]
 EnvironmentFile=-/etc/jaeger/jaeger.env
@@ -12,7 +12,7 @@ User=jaeger
 Group=jaeger
 StandardOutput=syslog
 SyslogIdentifier=jaeger-ingester
-ExecStart=/usr/local/bin/jaeger-ingester --config-file=/etc/jaeger/jaeger-ingester.yaml
+ExecStart=/usr/bin/jaeger-ingester --config-file=/etc/jaeger/jaeger-ingester.yaml
 Restart=on-abort
 LimitNOFILE=65536
 

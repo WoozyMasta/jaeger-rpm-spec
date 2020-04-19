@@ -3,7 +3,7 @@ Description=Jaeger collector receives traces from Jaeger agents and runs them th
 Documentation=https://www.jaegertracing.io/docs/1.17/
 Wants=network-online.target
 After=network-online.target
-AssertFileIsExecutable=/usr/local/bin/jaeger
+AssertFileIsExecutable=/usr/bin/jaeger
 
 [Service]
 EnvironmentFile=-/etc/jaeger/jaeger.env
@@ -12,7 +12,7 @@ User=jaeger
 Group=jaeger
 StandardOutput=syslog
 SyslogIdentifier=jaeger-collector
-ExecStart=/usr/local/bin/jaeger-collector --config-file=/etc/jaeger/jaeger-collector.yaml
+ExecStart=/usr/bin/jaeger-collector --config-file=/etc/jaeger/jaeger-collector.yaml
 Restart=on-abort
 LimitNOFILE=65536
 

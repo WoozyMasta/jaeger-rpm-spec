@@ -3,7 +3,7 @@ Description=Jaeger query service provides a Web UI and an API for accessing trac
 Documentation=https://www.jaegertracing.io/docs/1.17/
 Wants=network-online.target
 After=network-online.target
-AssertFileIsExecutable=/usr/local/bin/jaeger
+AssertFileIsExecutable=/usr/bin/jaeger
 
 [Service]
 EnvironmentFile=-/etc/jaeger/jaeger.env
@@ -12,7 +12,7 @@ User=jaeger
 Group=jaeger
 StandardOutput=syslog
 SyslogIdentifier=jaeger-query
-ExecStart=/usr/local/bin/jaeger-query --config-file=/etc/jaeger/jaeger-query.yaml
+ExecStart=/usr/bin/jaeger-query --config-file=/etc/jaeger/jaeger-query.yaml
 Restart=on-abort
 LimitNOFILE=65536
 

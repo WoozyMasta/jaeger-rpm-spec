@@ -3,7 +3,7 @@ Description=Jaeger agent is a daemon program that runs on every host and receive
 Documentation=https://www.jaegertracing.io/docs/1.17/
 Wants=network-online.target
 After=network-online.target
-AssertFileIsExecutable=/usr/local/bin/jaeger
+AssertFileIsExecutable=/usr/bin/jaeger
 
 [Service]
 EnvironmentFile=-/etc/jaeger/jaeger.env
@@ -12,7 +12,7 @@ User=jaeger
 Group=jaeger
 StandardOutput=syslog
 SyslogIdentifier=jaeger-agent
-ExecStart=/usr/local/bin/jaeger-agent --config-file=/etc/jaeger/jaeger-agent.yaml
+ExecStart=/usr/bin/jaeger-agent --config-file=/etc/jaeger/jaeger-agent.yaml
 Restart=on-abort
 LimitNOFILE=65536
 
