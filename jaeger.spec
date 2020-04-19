@@ -73,6 +73,7 @@ Jaeger query service provides a Web UI and an API for accessing trace data.
 rm -rf %{buildroot}
 
 install -p -d -m 0755 %{buildroot}%{_sysconfdir}/%{name}
+install -p -d -m 0755 %{buildroot}%{_sharedstatedir}/%{name}
 
 install -p -D -m 0755 %{_builddir}/%{name}-%{version}-linux-amd64/%{name}-all-in-one \
                       %{buildroot}%{_bindir}/%{name}
@@ -158,6 +159,7 @@ getent group %{name} >/dev/null && groupdel %{name}
 
 %files
 %defattr(-,root,root,-)
+%attr(755,%{name},%{name}) %dir %{_sharedstatedir}/%{name}
 %attr(755, root, root) %{_bindir}/%{name}
 %attr(644, root, root) %{_unitdir}/%{name}.service
 %config(noreplace) %attr(640, root, %{name}) %{_sysconfdir}/%{name}/%{name}.yaml
@@ -165,6 +167,7 @@ getent group %{name} >/dev/null && groupdel %{name}
 
 %files %{_agent}
 %defattr(-,root,root,-)
+%attr(755,%{name},%{name}) %dir %{_sharedstatedir}/%{name}
 %attr(755, root, root) %{_bindir}/%{name}-%{_agent}
 %attr(644, root, root) %{_unitdir}/%{name}-%{_agent}.service
 %config(noreplace) %attr(640, root, %{name}) %{_sysconfdir}/%{name}/%{name}-%{_agent}.yaml
@@ -172,6 +175,7 @@ getent group %{name} >/dev/null && groupdel %{name}
 
 %files %{_collector}
 %defattr(-,root,root,-)
+%attr(755,%{name},%{name}) %dir %{_sharedstatedir}/%{name}
 %attr(755, root, root) %{_bindir}/%{name}-%{_collector}
 %attr(644, root, root) %{_unitdir}/%{name}-%{_collector}.service
 %config(noreplace) %attr(640, root, %{name}) %{_sysconfdir}/%{name}/%{name}-%{_collector}.yaml
@@ -179,6 +183,7 @@ getent group %{name} >/dev/null && groupdel %{name}
 
 %files %{_ingester}
 %defattr(-,root,root,-)
+%attr(755,%{name},%{name}) %dir %{_sharedstatedir}/%{name}
 %attr(755, root, root) %{_bindir}/%{name}-%{_ingester}
 %attr(644, root, root) %{_unitdir}/%{name}-%{_ingester}.service
 %config(noreplace) %attr(640, root, %{name}) %{_sysconfdir}/%{name}/%{name}-%{_ingester}.yaml
@@ -186,6 +191,7 @@ getent group %{name} >/dev/null && groupdel %{name}
 
 %files %{_query}
 %defattr(-,root,root,-)
+%attr(755,%{name},%{name}) %dir %{_sharedstatedir}/%{name}
 %attr(755, root, root) %{_bindir}/%{name}-%{_query}
 %attr(644, root, root) %{_unitdir}/%{name}-%{_query}.service
 %config(noreplace) %attr(640, root, %{name}) %{_sysconfdir}/%{name}/%{name}-%{_query}.yaml
